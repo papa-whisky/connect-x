@@ -18,6 +18,7 @@ var $gameWrapper = $('.game-wrapper');
 var $currentPlayer = $('.current-player');
 var $roundWinner = $('.round-winner')
 var $turnTimer = $('.turn-timer');
+var $scoreBoard = $('.score-board');
 
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -29,8 +30,20 @@ function createGameBoard() {
   }
 }
 
+function createScoreBoard() {
+  for (var i = 0; i < players.length; i++) {
+    var $scoreCard = $('<div>').addClass('score-card');
+    var $name = $('<div>').addClass('name').text(players[i].name);
+    var $color = $('<div>').addClass(players[i].color).addClass('color');
+    var $score = $('<div>').addClass('score').text(players[i].score);
+    $scoreCard.append($name).append($color).append($score);
+    $scoreBoard.append($scoreCard);
+  }
+}
+
 // TODO - relocate once pre-game options integrated.
 createGameBoard();
+createScoreBoard();
 var $rows = $('.row');
 $currentPlayer.text(players[activePlayer].name);
 startTimer();
@@ -55,6 +68,7 @@ function resetGameBoard() {
 function roundWon() {
   $roundWinner.text(players[activePlayer].name);
   players[activePlayer].score += 1;
+  $('.score').eq(activePlayer).text(players[activePlayer].score);
   resetGameBoard();
   if (players[activePlayer].score === targetScore) {
     alert('blah blah');
