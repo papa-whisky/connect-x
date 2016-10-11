@@ -3,17 +3,21 @@ var boardRows = 6;
 var boardCols = 7;
 var connectNumber = 4;
 var targetScore = 3;
+var turnTime = 0;
 var players = [
   { name: 'Constance', score: 0, color: 'blue' },
   { name: 'Pierre', score: 0, color: 'red' },
   // { name: 'Farquhar', score: 0, color: 'mistyrose'}
 ];
 var activePlayer = 0;
+var timeLeft = 0;
+var timerInterval = null;
 
 // jQuery objects
 var $gameWrapper = $('.game-wrapper');
 var $currentPlayer = $('.current-player');
 var $roundWinner = $('.round-winner')
+var $turnTimer = $('.turn-timer');
 
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -29,6 +33,7 @@ function createGameBoard() {
 createGameBoard();
 var $rows = $('.row');
 $currentPlayer.text(players[activePlayer].name);
+startTimer();
 
 function dropToken(color, clickedColIndex) {
   for (var i = ($rows.length - 1); i >= 0; i--) {
@@ -115,12 +120,37 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
   $currentPlayer.text(players[activePlayer].name);
 }
 
+function timer() {
+  timeLeft -= 1;
+  $turnTimer.text(timeLeft);
+  if (timeLeft === -1) {
+    clearInterval(timerInterval);
+    if (activePlayer < players.length - 1) {
+      activePlayer += 1;
+    } else {
+      activePlayer = 0;
+    }
+    $currentPlayer.text(players[activePlayer].name);
+    startTimer();
+  }
+}
+
+function startTimer() {
+  if (turnTime > 0) {
+    timeLeft = turnTime;
+    $turnTimer.text(timeLeft);
+    timerInterval = setInterval(timer, 1000);
+  }
+}
+
 function makeMove(event) {
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
     var color = players[activePlayer].color;
     var $currentSquare = dropToken(color, clickedColIndex);
     checkRoundWinner($currentSquare, color, clickedColIndex);
+    clearInterval(timerInterval);
+    startTimer();
   }
 }
 
