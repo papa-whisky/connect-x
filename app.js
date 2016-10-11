@@ -2,15 +2,18 @@
 var boardRows = 6;
 var boardCols = 7;
 var connectNumber = 4;
+var targetScore = 3;
 var players = [
   { name: 'Constance', score: 0, color: 'blue' },
-  { name: 'Pierre', score: 0, color: 'red' }
+  { name: 'Pierre', score: 0, color: 'red' },
+  { name: 'Farquhar', score: 0, color: 'mistyrose'}
 ];
 var activePlayer = 0;
 
 // jQuery objects
 var $gameWrapper = $('.game-wrapper');
 var $currentPlayer = $('.current-player');
+var $roundWinner = $('.round-winner')
 
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -29,7 +32,7 @@ $currentPlayer.text(players[activePlayer].name);
 
 function dropToken(color, clickedColIndex) {
   for (var i = ($rows.length - 1); i >= 0; i--) {
-    var $currentSquare = $($($rows[i]).children()[clickedColIndex]);
+    var $currentSquare = $rows.eq(i).children().eq(clickedColIndex);
     if (!$currentSquare.hasClass('filled')) {
       $currentSquare.addClass('filled ' + color);
       return $currentSquare;
@@ -37,13 +40,30 @@ function dropToken(color, clickedColIndex) {
   }
 }
 
-function checkWinner($currentSquare, color, clickedColIndex) {
+function resetGameBoard() {
+  $gameWrapper.children().remove();
+  createGameBoard();
+  $rows = $('.row');
+  activePlayer = 0;
+}
+
+function roundWon() {
+  $roundWinner.text(players[activePlayer].name);
+  players[activePlayer].score += 1;
+  resetGameBoard();
+  if (players[activePlayer].score === targetScore) {
+    alert('blah blah');
+    return;
+  }
+}
+
+function checkRoundWinner($currentSquare, color, clickedColIndex) {
   // Check for winner in rows.
   var $currentRow = $currentSquare.parent().children();
   for (var i = 0; i < $currentRow.length - connectNumber + 1; i++) {
     var $rowSlice = $currentRow.slice(i, i + connectNumber);
     if ($rowSlice.not('.' + color).length === 0) {
-      alert('blah blah');
+      roundWon();
       return;
     }
   }
@@ -55,7 +75,7 @@ function checkWinner($currentSquare, color, clickedColIndex) {
   for (var i = 0; i < $currentCol.length - connectNumber + 1; i++) {
     var $colSlice = $currentCol.slice(i, i + connectNumber);
     if ($colSlice.not('.' + color).length === 0) {
-      alert('blah blah');
+      roundWon();
       return;
     }
   }
@@ -70,7 +90,7 @@ function checkWinner($currentSquare, color, clickedColIndex) {
   for (var i = 0; i < $diag1.length - connectNumber + 1; i++) {
     var $diagSlice = $diag1.slice(i, i + connectNumber);
     if ($diagSlice.not('.' + color).length === 0) {
-      alert('blah blah');
+      roundWon();
       return;
     }
   }
@@ -83,23 +103,23 @@ function checkWinner($currentSquare, color, clickedColIndex) {
   for (var i = 0; i < $diag2.length - connectNumber + 1; i++) {
     var $diagSlice = $diag2.slice(i, i + connectNumber);
     if ($diagSlice.not('.' + color).length === 0) {
-      alert('blah blah');
+      roundWon();
       return;
     }
   }
-}
-
-function makeMove(event) {
-  var color = players[activePlayer].color;
-  var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
-  var $currentSquare = dropToken(color, clickedColIndex);
-  checkWinner($currentSquare, color, clickedColIndex);
   if (activePlayer < players.length - 1) {
     activePlayer += 1;
   } else {
     activePlayer = 0;
   }
   $currentPlayer.text(players[activePlayer].name);
+}
+
+function makeMove(event) {
+  var color = players[activePlayer].color;
+  var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
+  var $currentSquare = dropToken(color, clickedColIndex);
+  checkRoundWinner($currentSquare, color, clickedColIndex);
 }
 
 $gameWrapper.on('click', '.square', makeMove);

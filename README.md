@@ -35,7 +35,10 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
     * Switch active player after each turn.
   3. Determine Winner.
     * After each turn, check each row, column, and diagonal for 4 same tokens.
-    * Alert winner if found.
+    * Add markup to show winner.
+    * Add 1 to winner's score.
+    * Reset game board.
+    * If winner's score = target, end game.
 5. Integrate User Options.
   * 
 6. Presentation/styling.
