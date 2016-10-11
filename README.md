@@ -39,6 +39,8 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
     * Add 1 to winner's score.
     * Reset game board.
     * If winner's score = target, end game.
+  4. Refinements.
+    * Check if column is full before attempting to add another token.
 5. Integrate User Options.
   * 
 6. Presentation/styling.

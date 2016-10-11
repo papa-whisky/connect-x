@@ -6,7 +6,7 @@ var targetScore = 3;
 var players = [
   { name: 'Constance', score: 0, color: 'blue' },
   { name: 'Pierre', score: 0, color: 'red' },
-  { name: 'Farquhar', score: 0, color: 'mistyrose'}
+  // { name: 'Farquhar', score: 0, color: 'mistyrose'}
 ];
 var activePlayer = 0;
 
@@ -116,10 +116,12 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
 }
 
 function makeMove(event) {
-  var color = players[activePlayer].color;
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
-  var $currentSquare = dropToken(color, clickedColIndex);
-  checkRoundWinner($currentSquare, color, clickedColIndex);
+  if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
+    var color = players[activePlayer].color;
+    var $currentSquare = dropToken(color, clickedColIndex);
+    checkRoundWinner($currentSquare, color, clickedColIndex);
+  }
 }
 
 $gameWrapper.on('click', '.square', makeMove);
