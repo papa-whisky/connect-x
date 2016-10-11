@@ -7,7 +7,7 @@ var turnTime = 0;
 var players = [
   { name: 'Constance', score: 0, color: 'blue' },
   { name: 'Pierre', score: 0, color: 'red' },
-  // { name: 'Farquhar', score: 0, color: 'mistyrose'}
+  // { name: 'Baldassare', score: 0, color: 'mistyrose'}
 ];
 var activePlayer = 0;
 var timeLeft = 0;

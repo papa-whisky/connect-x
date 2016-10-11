@@ -19,14 +19,14 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Number of tokens to connect to win round.
   * Turn time limit.
   * Number of rounds required to win.
-3. Draw game board & timers/counters;
+3. Draw game board;
   * Get number of rows and create row divs.
   * Get number of columns and add squares to each row.
   * Append all to game board.
 4. Basic Game logic.
   1. Drop tokens.
     * Add event listener to game board.
-    * Index of square within row will represent column number.
+    * Index of clicked square within row will represent column number.
     * When clicked, add BG colour to lowest row without colour already present.
   2. Switch turns.
     * Store players in variable with colour, score.
@@ -42,7 +42,5 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   4. Refinements.
     * Check if column is full before attempting to add another token.
     * Add timer for turn, including markup to show time left.
-5. Integrate User Options.
-  * 
-6. Presentation/styling.
-  * 
+5. Presentation/styling.
+  * Create overall layout, seperate options screen and game board screen that can be switched between.
