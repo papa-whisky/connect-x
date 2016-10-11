@@ -1,0 +1,9 @@
+row {
+  display: inline-block;
+}
+
+square {
+  display: inline-block
+  height: 50px;
+  width: 50px;
+}
