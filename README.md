@@ -18,7 +18,9 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Turn time limit.
   * Number of rounds required to win.
 3. Draw game board & timers/counters;
-  * 
+  * Get number of rows and create row divs.
+  * Get number of columns and add squares to each row.
+  * Append all to game board.
 4. Game logic.
   * 
 5. Presentation/styling.
