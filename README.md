@@ -22,6 +22,8 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Get number of columns and add squares to each row.
   * Append all to game board.
 4. Game logic.
-  * 
+  * Add event listener to game board.
+  * Index of square within row will represent column number.
+  * When clicked, add BG colour to lowest row without colour already present.
 5. Presentation/styling.
   * 
