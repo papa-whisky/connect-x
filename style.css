@@ -3,7 +3,7 @@ row {
 }
 
 square {
-  display: inline-block
+  display: inline-block;
   height: 50px;
   width: 50px;
 }
