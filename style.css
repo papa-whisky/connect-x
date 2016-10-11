@@ -9,6 +9,10 @@
   border: 1px solid black;
 }
 
-.token {
+.blue {
   background: blue;
+}
+
+.red {
+  background: red;
 }
