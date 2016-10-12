@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css?family=Montserrat';
+
 * {
   box-sizing: border-box;
 }
@@ -13,6 +15,7 @@ html, body {
   height: 100%;
   overflow: hidden;
   position: relative;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .options-screen, .game-screen {
@@ -21,9 +24,82 @@ html, body {
   position: absolute;
 }
 
-.options-screen {
-  background: mediumaquamarine;
+/*OPTIONS SCREEN STYLES*/
+
+/*Remove up/down buttons from # inputs*/
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
 }
+
+.options-screen {
+  background: #4A5043;
+  text-align: center;
+}
+
+h1 {
+  background: #FFCB47;
+  font-weight: normal;
+  margin: 0 0 .75em 0;
+  padding: 1em 0;
+  font-size: 2em;
+}
+
+h3 {
+  font-weight: normal;
+  display: inline-block;
+}
+
+input {
+  background: none;
+  outline: none;
+  border: 1px solid black;
+  height: 2em;
+  width: 2em;
+  margin: 0 .6em;
+  text-align: center;
+  font-size: 1.17em;
+}
+
+.color-picker div {
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
+}
+
+.dim {
+  opacity: .5;
+}
+
+.color-picker {
+  width: 8em;
+}
+
+.player-details input {
+  width: 8em;
+  margin-bottom: .1em;
+}
+
+.player-details div {
+  display: inline-block;
+  margin: 0 .3em;
+}
+
+.options-screen button {
+  background: none;
+  border: 1px solid black;
+  font-family: inherit;
+  font-size: 1em;
+  height: 2em;
+  width: 8em;
+  margin-top: 2em;
+}
+
+.options-screen button:hover {
+  background: rgba(255, 255, 255, .25);
+}
+
+/*GAME SCREEN STYLES*/
 
 .game-screen {
   left: 100%;
@@ -82,7 +158,8 @@ html, body {
   content: 'Score: ';
 }
 
-/*Player colour options:*/
+/*PLAYER COLOR OPTIONS*/
+
 .mistyrose {
   background: mistyrose;
 }
@@ -101,15 +178,4 @@ html, body {
 
 .darkgoldenrod {
   background: darkgoldenrod;
-}
-
-.color-picker div {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border-radius: 100%;
-}
-
-.dim {
-  opacity: .5;
 }
