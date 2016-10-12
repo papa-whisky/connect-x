@@ -69,8 +69,14 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Style options page (heading, inputs, start button).
   * Style game page (game board, score board, turn and timer info).
   * Have player's token hover over column they are about to click.
+  * TODO: Make turn timer red when 5 or less seconds remain.
 5. Animations.
-  * 
+  * Implement options screen heading as a splash screen.
+  * TODO: Animate transition between options screen and game screen.
+  * TODO: Animate tokens dropping into columns.
 6. Bugs.
   * TODO: input min/max not working.
   * TODO: clear board overaly when going back to options screen and starting a new game.
+  * TODO: player details input validation is vague, try adding red asterisk after element(s) requiring completion.
+7. Optimisations.
+  * TODO: Use event bubbling to refine color picker event handler.

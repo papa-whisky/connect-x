@@ -359,3 +359,13 @@ $('.start').click(function() {
 $('.return-to-options').click(function() {
   $gameScreen.css('left', '100%');
 });
+
+$('h1').click(function() {
+  $(event.target).css({'line-height': '1em', 'padding': '1em 0'});
+  $('p').hide()
+});
+
+$('p').click(function() {
+  $('h1').css({'line-height': '1em', 'padding': '1em 0'});
+  $('p').hide()
+});
