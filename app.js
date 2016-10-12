@@ -23,6 +23,8 @@ var $scoreBoard = $('.score-board');
 var $boardOverlay = $('.board-overlay');
 var $nextRoundBtn = $('.next-round');
 var $resetBtn = $('.reset');
+var $numOfPlayersInput = $('.num-of-players');
+var $playerInfo = $('.player-info');
 
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -178,6 +180,8 @@ function makeMove(event) {
   }
 }
 
+// Event handlers
+
 $gameWrapper.on('click', '.square', makeMove);
 $nextRoundBtn.on('click', function() {
   resetGameBoard();
@@ -197,3 +201,28 @@ $resetBtn.on('click', function() {
   resetGameBoard();
   startTimer();
 })
+$numOfPlayersInput.keypress(function() {
+  if (event.which === 13) {
+    addPlayerDetailDivs();
+  }
+})
+
+function addPlayerDetailDivs() {
+  for (var i = 0; i < parseInt($numOfPlayersInput.val()); i++) {
+    var $playerDetailDiv = $('<div>').addClass('player-details');
+    var $nameInput = $('<input type="text" placeholder="Enter Name">');
+    $playerDetailDiv.append($nameInput, generateColorPicker());
+    $playerInfo.append($playerDetailDiv);
+  }
+}
+
+function generateColorPicker() {
+  var $colorPicker = $('<div>').addClass('color-picker');
+  var $one = $('<div>').addClass('mistyrose');
+  var $two = $('<div>').addClass('chartruese');
+  var $three = $('<div>').addClass('salmon');
+  var $four = $('<div>').addClass('aquamarine');
+  var $five = $('<div>').addClass('darkgoldenrod');
+  $colorPicker.append($one, $two, $three, $four, $five);
+  return $colorPicker;
+}

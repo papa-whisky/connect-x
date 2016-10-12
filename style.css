@@ -82,14 +82,30 @@ html, body {
   content: 'Score: ';
 }
 
-.blue {
-  background: blue;
-}
-
-.red {
-  background: red;
-}
-
+/*Player colour options:*/
 .mistyrose {
   background: mistyrose;
+}
+
+.chartruese {
+  background: chartreuse;
+}
+
+.salmon {
+  background: salmon;
+}
+
+.aquamarine {
+  background: aquamarine;
+}
+
+.darkgoldenrod {
+  background: darkgoldenrod;
+}
+
+.color-picker div {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 100%;
 }
