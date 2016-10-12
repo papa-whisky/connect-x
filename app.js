@@ -9,7 +9,7 @@ var players = [
   // { name: 'Pierre', score: 0, color: 'darkgoldenrod' },
   // { name: 'Baldassare', score: 0, color: 'mistyrose'}
 ];
-var activePlayer = 0;
+var activePlayer = Math.floor(Math.random() * players.length);
 var timeLeft = 0;
 var timerInterval = null;
 
@@ -80,6 +80,7 @@ function makeMove(event) {
     var $currentSquare = dropToken(color, clickedColIndex);
     if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
       clearInterval(timerInterval);
+      nextPlayer();
       startTimer();
     }
   }
@@ -93,6 +94,15 @@ function dropToken(color, clickedColIndex) {
       return $currentSquare;
     }
   }
+}
+
+function nextPlayer() {
+  if (activePlayer < players.length - 1) {
+    activePlayer += 1;
+  } else {
+    activePlayer = 0;
+  }
+  $currentPlayer.text(players[activePlayer].name);
 }
 
 // Check winner of round or whole game functions:
@@ -146,12 +156,6 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
       return true;
     }
   }
-  if (activePlayer < players.length - 1) {
-    activePlayer += 1;
-  } else {
-    activePlayer = 0;
-  }
-  $currentPlayer.text(players[activePlayer].name);
   return false;
 }
 
@@ -175,7 +179,8 @@ function resetGameBoard() {
   $gameWrapper.children().remove();
   createGameBoard();
   $rows = $('.row');
-  activePlayer = 0;
+  activePlayer = Math.floor(Math.random() * players.length);
+  nextPlayer();
 }
 
 // Turn timer functions:
@@ -184,12 +189,7 @@ function timer() {
   $turnTimer.text(timeLeft);
   if (timeLeft === -1) {
     clearInterval(timerInterval);
-    if (activePlayer < players.length - 1) {
-      activePlayer += 1;
-    } else {
-      activePlayer = 0;
-    }
-    $currentPlayer.text(players[activePlayer].name);
+    nextPlayer();
     startTimer();
   }
 }
