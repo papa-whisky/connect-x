@@ -5,9 +5,9 @@ var connectNumber = 4;
 var targetScore = 3;
 var turnTime = 0;
 var players = [
-  { name: 'Constance', score: 0, color: 'blue' },
-  { name: 'Pierre', score: 0, color: 'red' },
-  // { name: 'Baldassare', score: 0, color: 'mistyrose'}
+  { name: 'Constance', score: 0, color: 'chartruese' },
+  { name: 'Pierre', score: 0, color: 'darkgoldenrod' },
+  { name: 'Baldassare', score: 0, color: 'mistyrose'}
 ];
 var activePlayer = 0;
 var timeLeft = 0;
@@ -26,6 +26,35 @@ var $resetBtn = $('.reset');
 var $numOfPlayersInput = $('.num-of-players');
 var $playerInfo = $('.player-info');
 
+// TODO - relocate once pre-game options integrated:
+createGameBoard();
+createScoreBoard();
+var $rows = $('.row');
+$currentPlayer.text(players[activePlayer].name);
+startTimer();
+
+// Collect player info and game setting functions:
+function addPlayerDetailDivs() {
+  for (var i = 0; i < parseInt($numOfPlayersInput.val()); i++) {
+    var $playerDetailDiv = $('<div>').addClass('player-details');
+    var $nameInput = $('<input type="text" placeholder="Enter Name">');
+    $playerDetailDiv.append($nameInput, generateColorPicker());
+    $playerInfo.append($playerDetailDiv);
+  }
+}
+
+function generateColorPicker() {
+  var $colorPicker = $('<div>').addClass('color-picker');
+  var $one = $('<div>').addClass('mistyrose');
+  var $two = $('<div>').addClass('chartruese');
+  var $three = $('<div>').addClass('salmon');
+  var $four = $('<div>').addClass('aquamarine');
+  var $five = $('<div>').addClass('darkgoldenrod');
+  $colorPicker.append($one, $two, $three, $four, $five);
+  return $colorPicker;
+}
+
+// Create board functions:
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
     var $row = $('<div>').addClass('row');
@@ -47,12 +76,19 @@ function createScoreBoard() {
   }
 }
 
-// TODO - relocate once pre-game options integrated.
-createGameBoard();
-createScoreBoard();
-var $rows = $('.row');
-$currentPlayer.text(players[activePlayer].name);
-startTimer();
+// Make move functions:
+
+function makeMove(event) {
+  var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
+  if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
+    var color = players[activePlayer].color;
+    var $currentSquare = dropToken(color, clickedColIndex);
+    if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
+      clearInterval(timerInterval);
+      startTimer();
+    }
+  }
+}
 
 function dropToken(color, clickedColIndex) {
   for (var i = ($rows.length - 1); i >= 0; i--) {
@@ -64,28 +100,7 @@ function dropToken(color, clickedColIndex) {
   }
 }
 
-function resetGameBoard() {
-  $gameWrapper.children().remove();
-  createGameBoard();
-  $rows = $('.row');
-  activePlayer = 0;
-}
-
-function roundWon() {
-  clearInterval(timerInterval);
-  $roundWinner.text(players[activePlayer].name);
-  players[activePlayer].score += 1;
-  $('.score').eq(activePlayer).text(players[activePlayer].score);
-  $boardOverlay.show();
-  if (players[activePlayer].score === targetScore) {
-    $roundWinner.hide();
-    $gameWinner.show();
-    $gameWinner.text(players[activePlayer].name);
-    $nextRoundBtn.hide();
-    $resetBtn.show();
-  }
-}
-
+// Check winner of round or whole game functions:
 function checkRoundWinner($currentSquare, color, clickedColIndex) {
   // Check for winner in rows.
   var $currentRow = $currentSquare.parent().children();
@@ -145,6 +160,30 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
   return false;
 }
 
+function roundWon() {
+  clearInterval(timerInterval);
+  $roundWinner.text(players[activePlayer].name);
+  players[activePlayer].score += 1;
+  $('.score').eq(activePlayer).text(players[activePlayer].score);
+  $boardOverlay.show();
+  if (players[activePlayer].score === targetScore) {
+    $roundWinner.hide();
+    $gameWinner.show();
+    $gameWinner.text(players[activePlayer].name);
+    $nextRoundBtn.hide();
+    $resetBtn.show();
+  }
+}
+
+// Reset after round or game finished functions:
+function resetGameBoard() {
+  $gameWrapper.children().remove();
+  createGameBoard();
+  $rows = $('.row');
+  activePlayer = 0;
+}
+
+// Turn timer functions:
 function timer() {
   timeLeft -= 1;
   $turnTimer.text(timeLeft);
@@ -165,18 +204,6 @@ function startTimer() {
     timeLeft = turnTime;
     $turnTimer.text(timeLeft);
     timerInterval = setInterval(timer, 1000);
-  }
-}
-
-function makeMove(event) {
-  var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
-  if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
-    var color = players[activePlayer].color;
-    var $currentSquare = dropToken(color, clickedColIndex);
-    if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
-      clearInterval(timerInterval);
-      startTimer();
-    }
   }
 }
 
@@ -206,23 +233,3 @@ $numOfPlayersInput.keypress(function() {
     addPlayerDetailDivs();
   }
 })
-
-function addPlayerDetailDivs() {
-  for (var i = 0; i < parseInt($numOfPlayersInput.val()); i++) {
-    var $playerDetailDiv = $('<div>').addClass('player-details');
-    var $nameInput = $('<input type="text" placeholder="Enter Name">');
-    $playerDetailDiv.append($nameInput, generateColorPicker());
-    $playerInfo.append($playerDetailDiv);
-  }
-}
-
-function generateColorPicker() {
-  var $colorPicker = $('<div>').addClass('color-picker');
-  var $one = $('<div>').addClass('mistyrose');
-  var $two = $('<div>').addClass('chartruese');
-  var $three = $('<div>').addClass('salmon');
-  var $four = $('<div>').addClass('aquamarine');
-  var $five = $('<div>').addClass('darkgoldenrod');
-  $colorPicker.append($one, $two, $three, $four, $five);
-  return $colorPicker;
-}
