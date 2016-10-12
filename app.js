@@ -294,9 +294,11 @@ $numOfPlayersInput.keypress(function() {
 });
 
 $numOfPlayersInput.blur(function() {
-  $('.player-details').remove();
-  addPlayerDetailDivs();
-  addColorPickerHandlers();
+  if ($('.player-details').length === 0) {
+    $('.player-details').remove();
+    addPlayerDetailDivs();
+    addColorPickerHandlers();
+  }
 });
 
 $('.start').click(function() {

@@ -6,6 +6,8 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
 
 ---
 
+#### Game Details
+
 1. User experience.
   * Users are presented with a quick splash screen, then a range of options to set up the game (e.g. player names, board size, number of rounds).
   * Then press a button to begin. Game board is revealed, active player is notified that it is their turn. Game board can be clicked to place token, then next player is notified of their turn, continuing as such until game is complete.
@@ -19,11 +21,16 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Number of tokens to connect to win round.
   * Turn time limit.
   * Number of rounds required to win.
-3. Draw game board;
+
+---
+
+#### Build Process
+
+1. Draw game board;
   * Get number of rows and create row divs.
   * Get number of columns and add squares to each row.
   * Append all to game board.
-4. Basic Game logic.
+2. Basic Game logic.
   1. Drop tokens.
     * Add event listener to game board.
     * Index of clicked square within row will represent column number.
@@ -46,7 +53,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
     * Pause after each round, add button to start next round.
     * Reset game once target number of rounds complete.
     * Randomise first player for each round.
-5. Usability.
+3. Usability.
   * Create overall layout, separate options screen and game board screen that can be switched between.
   * Populate options screen with necessary inputs, start button to begin game.
   * Once number of players entered, generate name inputs and color pickers.
@@ -55,7 +62,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Add button to game screen to return to options screen.
   * Generate name/color inputs once player number input box has lost focus (in addition to on enter press).
   * Add input placeholders to represent default values.
-6. Styling.
+4. Styling.
   * Style options page (heading, inputs, start button).
-7. Animations.
+5. Animations.
   * 
