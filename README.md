@@ -46,11 +46,15 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
     * Pause after each round, add button to start next round.
     * Reset game once target number of rounds complete.
     * Randomise first player for each round.
-5. Presentation.
+5. Usability.
   * Create overall layout, separate options screen and game board screen that can be switched between.
   * Populate options screen with necessary inputs, start button to begin game.
   * Once number of players entered, generate name inputs and color pickers.
   * Make color selectable, and remove this option for other players.
   * Make start button pass all input values to script, and begin game.
   * Add button to game screen to return to options screen.
+  * Generate name/color inputs once player number input box has lost focus (in addition to on enter press).
 6. Styling.
+  * 
+7. Animations.
+  * 

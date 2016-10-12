@@ -234,20 +234,31 @@ $resetBtn.on('click', function() {
   startTimer();
 });
 
+function addColorPickerHandlers() {
+  $('.color-picker div').hover(function() {
+  $(event.target).siblings().addClass('dim');
+  }, function() {
+    $(event.target).siblings().removeClass('dim');
+  });
+  $('.color-picker div').click(function() {
+    $(event.target).siblings().hide()
+    var chosenColor = $(event.target).attr('class');
+    $(event.target).attr('id', 'picked');
+    $('.' + chosenColor).not(event.target).hide();
+  });
+}
+
 $numOfPlayersInput.keypress(function() {
   if (event.which === 13 && $('.player-details').length === 0) {
     addPlayerDetailDivs();
-    $('.color-picker div').hover(function() {
-      $(event.target).siblings().addClass('dim');
-    }, function() {
-      $(event.target).siblings().removeClass('dim');
-    });
-    $('.color-picker div').click(function() {
-      $(event.target).siblings().hide()
-      var chosenColor = $(event.target).attr('class');
-      $(event.target).attr('id', 'picked');
-      $('.' + chosenColor).not(event.target).hide();
-    });
+    addColorPickerHandlers();
+  }
+});
+
+$numOfPlayersInput.blur(function() {
+  if ($('.player-details').length === 0) {
+    addPlayerDetailDivs();
+    addColorPickerHandlers();
   }
 });
 
