@@ -3,7 +3,7 @@ var boardRows = 6;
 var boardCols = 7;
 var connectNumber = 4;
 var targetScore = 3;
-var turnTime = 10;
+var turnTime = 0;
 var players = [
   { name: 'Constance', score: 0, color: 'blue' },
   { name: 'Pierre', score: 0, color: 'red' },
@@ -17,10 +17,12 @@ var timerInterval = null;
 var $gameWrapper = $('.game-wrapper');
 var $currentPlayer = $('.current-player');
 var $roundWinner = $('.round-winner')
+var $gameWinner = $('.game-winner');
 var $turnTimer = $('.turn-timer');
 var $scoreBoard = $('.score-board');
 var $boardOverlay = $('.board-overlay');
 var $nextRoundBtn = $('.next-round');
+var $resetBtn = $('.reset');
 
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -74,8 +76,11 @@ function roundWon() {
   $('.score').eq(activePlayer).text(players[activePlayer].score);
   $boardOverlay.show();
   if (players[activePlayer].score === targetScore) {
-    alert('blah blah');
-    return;
+    $roundWinner.hide();
+    $gameWinner.show();
+    $gameWinner.text(players[activePlayer].name);
+    $nextRoundBtn.hide();
+    $resetBtn.show();
   }
 }
 
@@ -177,4 +182,18 @@ $gameWrapper.on('click', '.square', makeMove);
 $nextRoundBtn.on('click', function() {
   resetGameBoard();
   $boardOverlay.hide();
+  startTimer();
+})
+$resetBtn.on('click', function() {
+  for (var i = 0; i < players.length; i++) {
+    players[i].score = 0;
+  }
+  $roundWinner.show();
+  $gameWinner.hide();
+  $nextRoundBtn.show();
+  $resetBtn.hide();
+  $boardOverlay.hide();
+  $('.score').text('0');
+  resetGameBoard();
+  startTimer();
 })
