@@ -112,6 +112,7 @@ button:hover {
   left: 100%;
   background: #B8DBD9;
   text-align: center;
+  transition: left .5s ease-in;
 }
 
 header {

@@ -72,7 +72,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * TODO: Make turn timer red when 5 or less seconds remain.
 5. Animations.
   * Implement options screen heading as a splash screen.
-  * TODO: Animate transition between options screen and game screen.
+  * Animate transition between options screen and game screen.
   * TODO: Animate tokens dropping into columns.
 6. Bugs.
   * TODO: input min/max not working.
