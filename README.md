@@ -62,11 +62,11 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Add button to game screen to return to options screen.
   * Generate name/color inputs once player number input box has lost focus (in addition to on enter press).
   * Add input placeholders to represent default values.
-  * TODO - input validation for start button (re player names/colors).
+  * Add input validation for start button (re player names/colors).
   * Set max and min values for input boxes.
-  * TODO - with 5 players, ensure last player's colour is 'picked'.
 4. Styling.
   * Style options page (heading, inputs, start button).
   * Style game page (game board, score board, turn and timer info).
+  * TODO - have players token hover over column they are about to click.
 5. Animations.
   * 

@@ -73,6 +73,25 @@ function setGameOptions() {
   }
 }
 
+function validatePlayerDetails() {
+  if ($numOfPlayersInput.val() === '') {
+    return false;
+  }
+  var $nameInputs = $('.player-details input');
+  for (var i = 0; i < $nameInputs.length; i++) {
+    if ($nameInputs.eq(i).val() === '') {
+      return false;
+    }
+  }
+  var $colorInputs = $('.color-picker');
+  for (var i = 0; i < $colorInputs.length; i++) {
+    if ($colorInputs.eq(i).children().filter('#picked').length === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
 // Create board functions:
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -302,6 +321,8 @@ $numOfPlayersInput.blur(function() {
 });
 
 $('.start').click(function() {
+  if (validatePlayerDetails()) {
+  $('.player-info').removeClass('invalid');
   setGameOptions();
   createPlayerObjects();
   $gameScreen.css('left', '0');
@@ -310,6 +331,9 @@ $('.start').click(function() {
   $currentPlayer.text(players[activePlayer].name);
   startTimer();
   initialiseOptionsScreen();
+  } else {
+    $('.player-info').addClass('invalid');
+  }
 });
 
 $('.return-to-options').click(function() {
