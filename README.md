@@ -43,5 +43,6 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
     * Check if column is full before attempting to add another token.
     * Add timer for turn, including markup to show time left.
     * Add markup to show player score cards.
+    * Pause after each round, add button to start next round.
 5. Presentation/styling.
   * Create overall layout, separate options screen and game board screen that can be switched between.

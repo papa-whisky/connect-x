@@ -3,7 +3,7 @@ var boardRows = 6;
 var boardCols = 7;
 var connectNumber = 4;
 var targetScore = 3;
-var turnTime = 0;
+var turnTime = 10;
 var players = [
   { name: 'Constance', score: 0, color: 'blue' },
   { name: 'Pierre', score: 0, color: 'red' },
@@ -19,6 +19,8 @@ var $currentPlayer = $('.current-player');
 var $roundWinner = $('.round-winner')
 var $turnTimer = $('.turn-timer');
 var $scoreBoard = $('.score-board');
+var $boardOverlay = $('.board-overlay');
+var $nextRoundBtn = $('.next-round');
 
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -66,10 +68,11 @@ function resetGameBoard() {
 }
 
 function roundWon() {
+  clearInterval(timerInterval);
   $roundWinner.text(players[activePlayer].name);
   players[activePlayer].score += 1;
   $('.score').eq(activePlayer).text(players[activePlayer].score);
-  resetGameBoard();
+  $boardOverlay.show();
   if (players[activePlayer].score === targetScore) {
     alert('blah blah');
     return;
@@ -83,7 +86,7 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
     var $rowSlice = $currentRow.slice(i, i + connectNumber);
     if ($rowSlice.not('.' + color).length === 0) {
       roundWon();
-      return;
+      return true;
     }
   }
   // Check for winner in columns.
@@ -95,7 +98,7 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
     var $colSlice = $currentCol.slice(i, i + connectNumber);
     if ($colSlice.not('.' + color).length === 0) {
       roundWon();
-      return;
+      return true;
     }
   }
   // Check for winner diagonally.
@@ -110,7 +113,7 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
     var $diagSlice = $diag1.slice(i, i + connectNumber);
     if ($diagSlice.not('.' + color).length === 0) {
       roundWon();
-      return;
+      return true;
     }
   }
   var $diag2 = $();
@@ -123,7 +126,7 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
     var $diagSlice = $diag2.slice(i, i + connectNumber);
     if ($diagSlice.not('.' + color).length === 0) {
       roundWon();
-      return;
+      return true;
     }
   }
   if (activePlayer < players.length - 1) {
@@ -132,6 +135,7 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
     activePlayer = 0;
   }
   $currentPlayer.text(players[activePlayer].name);
+  return false;
 }
 
 function timer() {
@@ -162,10 +166,15 @@ function makeMove(event) {
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
     var color = players[activePlayer].color;
     var $currentSquare = dropToken(color, clickedColIndex);
-    checkRoundWinner($currentSquare, color, clickedColIndex);
-    clearInterval(timerInterval);
-    startTimer();
+    if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
+      clearInterval(timerInterval);
+      startTimer();
+    }
   }
 }
 
 $gameWrapper.on('click', '.square', makeMove);
+$nextRoundBtn.on('click', function() {
+  resetGameBoard();
+  $boardOverlay.hide();
+})

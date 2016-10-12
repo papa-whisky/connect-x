@@ -26,6 +26,21 @@ html, body, .wrapper, .options-screen, .game-screen {
   background: palegoldenrod;
 }
 
+.game-board {
+  display: inline-block;
+  position: relative;
+}
+
+.board-overlay {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
 .square {
   display: inline-block;
   height: 50px;
@@ -38,7 +53,7 @@ html, body, .wrapper, .options-screen, .game-screen {
 }
 
 .round-winner::before {
-  content: 'Last round won by: ';
+  content: 'Round won by: ';
 }
 
 .color {
