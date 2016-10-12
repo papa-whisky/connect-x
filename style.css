@@ -33,12 +33,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .options-screen {
-  background: #4A5043;
+  background: #2F4550;
   text-align: center;
+  color: rgba(255, 255, 255, .75);
 }
 
 h1 {
-  background: #FFCB47;
+  background: #8BEAD8;
+  color: black;
   font-weight: normal;
   margin: 0 0 .75em 0;
   padding: 1em 0;
@@ -68,7 +70,7 @@ input {
 }
 
 .dim {
-  opacity: .5;
+  opacity: .25;
 }
 
 .color-picker {
@@ -86,16 +88,11 @@ input {
 }
 
 .options-screen button {
-  background: none;
-  border: 1px solid black;
-  font-family: inherit;
   font-size: 1em;
-  height: 2em;
   width: 8em;
-  margin-top: 2em;
 }
 
-.options-screen button:hover {
+button:hover {
   background: rgba(255, 255, 255, .25);
 }
 
@@ -103,12 +100,53 @@ input {
 
 .game-screen {
   left: 100%;
-  background: palegoldenrod;
+  background: #B8DBD9;
+  text-align: center;
 }
 
-.game-board {
+header {
+  background: #8BEAD8;
+  height: 6.438em;
+  line-height: 6.438em;
+  margin-bottom: 2.5em;
+  text-align: left;
+  padding: 0 3em;
+}
+
+.centering {
+  display: inline-block;
+  width: 74%;
+  border-right: 1px solid grey;
+}
+
+main {
   display: inline-block;
   position: relative;
+}
+
+aside {
+  display: inline-block;
+  width: 24%;
+  padding-right: .5em;
+}
+
+.name {
+  width: 75%;
+  text-align: left;
+  padding-left: .5em;
+  line-height: 2.5em;
+  font-size: 1.3em;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.game-wrapper {
+  display: inline-block;
+  font-size: 0;
+}
+
+.row {
+  background: rgba(0, 0, 0, .8);
 }
 
 .board-overlay {
@@ -118,7 +156,10 @@ input {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, .75);
+  color: white;
+  padding-top: 15%;
+  font-size: 1.5em;
 }
 
 .game-winner {
@@ -135,27 +176,57 @@ input {
 
 .square {
   display: inline-block;
-  height: 50px;
-  width: 50px;
+  height: 4rem;
+  width: 4rem;
   border: 1px solid black;
+  background: #B8DBD9;
+  border-radius: 100%;
+}
+
+.current-player {
+  display: inline-block;
+  font-size: 1.5em;
 }
 
 .current-player::before {
   content: 'Current Player: ';
 }
 
+.turn-timer {
+  display: inline-block;
+  margin-left: 50%;
+  font-size: 1.5em;
+}
+
 .round-winner::before {
   content: 'Round won by: ';
 }
 
-.color {
-  width: 2em;
-  height: 2em;
+.score {
+  width: 2.5em;
+  height: 2.5em;
   border-radius: 100%;
+  display: inline-block;
+  margin-left: .5em;
+  line-height: 2.5em;
+  font-size: 1.2em;
 }
 
-.score::before {
-  content: 'Score: ';
+.score-card {
+  margin-bottom: 1em;
+}
+
+button {
+  background: none;
+  border: 1px solid black;
+  font-family: inherit;
+  height: 2em;
+  margin-top: 2em;
+}
+
+.board-overlay button {
+  border: 1px solid white;
+  color: white;
 }
 
 /*PLAYER COLOR OPTIONS*/

@@ -12,33 +12,44 @@
 	<div class="wrapper">
 
 		<section class="options-screen">
+
 			<h1>Connect-X</h1>
+
 			<div class="player-info">
 				<h3>Number of players (2 to 5)</h3><input class="num-of-players" type="number">
 			</div>
+
 			<h3>Board size (rows x columns)</h3><input class="board-rows" type="number" placeholder="6">x<input class="board-cols" type="number" placeholder="7"><br>
 			<h3>Tokens to connect</h3><input class="connect-number" type="number" placeholder="4"><br>
 			<h3>Turn time limit (seconds, 0 for ∞)</h3><input class="turn-time" type="number" placeholder="0"><br>
 			<h3>Number of rounds to win</h3><input class="target-score" type="number" placeholder="3"><br>
 			<button class="start">Start</button>
+
 		</section>
 
 		<section class="game-screen">
 
-			<div class="game-board">
-				<div class="game-wrapper"></div>
-				<div class="board-overlay">
-					<div class="round-winner"></div>
-					<div class="game-winner"></div>
-					<button class="next-round">Start next round</button>
-					<button class="reset">Reset</button>
-				</div>
+			<header>
+				<div class="current-player"></div>
+				<div class="turn-timer"></div>
+			</header>
+
+			<div class="centering">
+				<main class="game-board">
+					<div class="game-wrapper"></div>
+					<div class="board-overlay">
+						<div class="round-winner"></div>
+						<div class="game-winner"></div>
+						<button class="next-round">Start next round</button>
+						<button class="reset">Reset</button>
+					</div>
+				</main>
 			</div>
 
-			<div class="current-player"></div>
-			<div class="turn-timer"></div>
-			<div class="score-board"></div>
-			<button class="return-to-options">Return to options screen</button>
+			<aside>
+				<div class="score-board"></div>
+				<button class="return-to-options">Return to options</button>
+			</aside>
 
 		</section>
 

@@ -89,9 +89,9 @@ function createScoreBoard() {
   for (var i = 0; i < players.length; i++) {
     var $scoreCard = $('<div>').addClass('score-card');
     var $name = $('<div>').addClass('name').text(players[i].name);
-    var $color = $('<div>').addClass(players[i].color).addClass('color');
-    var $score = $('<div>').addClass('score').text(players[i].score);
-    $scoreCard.append($name).append($color).append($score);
+    // var $color = $('<div>').addClass(players[i].color).addClass('color');
+    var $score = $('<div>').addClass(players[i].color).addClass('score').text(players[i].score);
+    $scoreCard.append($name).append($score);
     $scoreBoard.append($scoreCard);
   }
 }
