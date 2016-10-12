@@ -1,13 +1,13 @@
 // Global variables
-var boardRows = 6;
-var boardCols = 7;
-var connectNumber = 4;
-var targetScore = 3;
+var boardRows = 0;
+var boardCols = 0;
+var connectNumber = 0;
+var targetScore = 0;
 var turnTime = 0;
 var players = [
-  { name: 'Constance', score: 0, color: 'chartruese' },
-  { name: 'Pierre', score: 0, color: 'darkgoldenrod' },
-  { name: 'Baldassare', score: 0, color: 'mistyrose'}
+  // { name: 'Constance', score: 0, color: 'chartruese' },
+  // { name: 'Pierre', score: 0, color: 'darkgoldenrod' },
+  // { name: 'Baldassare', score: 0, color: 'mistyrose'}
 ];
 var activePlayer = 0;
 var timeLeft = 0;
@@ -25,13 +25,8 @@ var $nextRoundBtn = $('.next-round');
 var $resetBtn = $('.reset');
 var $numOfPlayersInput = $('.num-of-players');
 var $playerInfo = $('.player-info');
-
-// TODO - relocate once pre-game options integrated:
-createGameBoard();
-createScoreBoard();
-var $rows = $('.row');
-$currentPlayer.text(players[activePlayer].name);
-startTimer();
+var $gameScreen = $('.game-screen');
+var $rows = $();
 
 // Collect player info and game setting functions:
 function addPlayerDetailDivs() {
@@ -241,7 +236,29 @@ $numOfPlayersInput.keypress(function() {
   $('.color-picker div').click(function() {
     $(event.target).siblings().hide()
     var chosenColor = $(event.target).attr('class');
+    $(event.target).attr('id', 'picked');
     $('.' + chosenColor).not(event.target).hide();
-    $(event.target).addClass('picked');
-  })
+  });
+});
+
+$('.start').click(function() {
+  boardRows = parseInt($('.board-rows').val());
+  boardCols = parseInt($('.board-cols').val());
+  connectNumber = parseInt($('.connect-number').val());
+  turnTime = parseInt($('.turn-time').val());
+  targetScore = parseInt($('.target-score').val());
+  var $playerDetails = $('.player-details');
+  for (var i = 0; i < $playerDetails.length; i++) {
+    var player = new Object();
+    player.name = $playerDetails.eq(i).children('input').val();
+    player.color = $playerDetails.eq(i).find('#picked').attr('class');
+    player.score = 0;
+    players.push(player);
+  }
+  $gameScreen.css('left', '0');
+  createGameBoard();
+  createScoreBoard();
+  $rows = $('.row');
+  $currentPlayer.text(players[activePlayer].name);
+  startTimer();
 });
