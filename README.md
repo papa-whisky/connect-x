@@ -52,4 +52,5 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Once number of players entered, generate name inputs and color pickers.
   * Make color selectable, and remove this option for other players.
   * Make start button pass all input values to script, and begin game.
+  * Add button to game screen to return to options screen.
 6. Styling.

@@ -174,13 +174,23 @@ function roundWon() {
   }
 }
 
-// Reset after round or game finished functions:
+// Reset functions:
 function resetGameBoard() {
   $gameWrapper.children().remove();
   createGameBoard();
   $rows = $('.row');
   activePlayer = Math.floor(Math.random() * players.length);
   nextPlayer();
+}
+
+function initialiseOptionsScreen() {
+  $('.board-rows').val('');
+  $('.board-cols').val('');
+  $('.connect-number').val('');
+  $('.turn-time').val('');
+  $('.target-score').val('');
+  $numOfPlayersInput.val('');
+  $('.player-details').remove();
 }
 
 // Turn timer functions:
@@ -225,20 +235,20 @@ $resetBtn.on('click', function() {
 });
 
 $numOfPlayersInput.keypress(function() {
-  if (event.which === 13) {
+  if (event.which === 13 && $('.player-details').length === 0) {
     addPlayerDetailDivs();
+    $('.color-picker div').hover(function() {
+      $(event.target).siblings().addClass('dim');
+    }, function() {
+      $(event.target).siblings().removeClass('dim');
+    });
+    $('.color-picker div').click(function() {
+      $(event.target).siblings().hide()
+      var chosenColor = $(event.target).attr('class');
+      $(event.target).attr('id', 'picked');
+      $('.' + chosenColor).not(event.target).hide();
+    });
   }
-  $('.color-picker div').hover(function() {
-    $(event.target).siblings().addClass('dim');
-  }, function() {
-    $(event.target).siblings().removeClass('dim');
-  });
-  $('.color-picker div').click(function() {
-    $(event.target).siblings().hide()
-    var chosenColor = $(event.target).attr('class');
-    $(event.target).attr('id', 'picked');
-    $('.' + chosenColor).not(event.target).hide();
-  });
 });
 
 $('.start').click(function() {
@@ -261,4 +271,9 @@ $('.start').click(function() {
   $rows = $('.row');
   $currentPlayer.text(players[activePlayer].name);
   startTimer();
+  initialiseOptionsScreen();
 });
+
+$('.return-to-options').click(function() {
+  $gameScreen.css('left', '100%');
+})
