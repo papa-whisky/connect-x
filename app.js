@@ -4,12 +4,8 @@ var boardCols = 0;
 var connectNumber = 0;
 var targetScore = 0;
 var turnTime = 0;
-var players = [
-  // { name: 'Constance', score: 0, color: 'chartruese' },
-  // { name: 'Pierre', score: 0, color: 'darkgoldenrod' },
-  // { name: 'Baldassare', score: 0, color: 'mistyrose'}
-];
-var activePlayer = Math.floor(Math.random() * players.length);
+var players = [];
+var activePlayer = 0;
 var timeLeft = 0;
 var timerInterval = null;
 
@@ -49,6 +45,34 @@ function generateColorPicker() {
   return $colorPicker;
 }
 
+function setGameOptions() {
+  if ($('.board-rows').val()) {
+    boardRows = parseInt($('.board-rows').val());
+  } else {
+    boardRows = 6;
+  }
+  if ($('.board-cols').val()) {
+    boardCols = parseInt($('.board-cols').val());
+  } else {
+    boardCols = 7;
+  }
+  if ($('.connect-number').val()) {
+    connectNumber = parseInt($('.connect-number').val());
+  } else {
+    connectNumber = 4;
+  }
+  if ($('.turn-time').val()) {
+    turnTime = parseInt($('.turn-time').val());
+  } else {
+    turnTime = 0;
+  }
+  if ($('.target-score').val()) {
+    targetScore = parseInt($('.target-score').val());
+  } else {
+    targetScore = 3;
+  }
+}
+
 // Create board functions:
 function createGameBoard() {
   for (var i = 0; i < boardRows; i++) {
@@ -61,6 +85,7 @@ function createGameBoard() {
 }
 
 function createScoreBoard() {
+  $('.score-card').remove();
   for (var i = 0; i < players.length; i++) {
     var $scoreCard = $('<div>').addClass('score-card');
     var $name = $('<div>').addClass('name').text(players[i].name);
@@ -71,8 +96,19 @@ function createScoreBoard() {
   }
 }
 
-// Make move functions:
+function createPlayerObjects() {
+  players = [];  
+  var $playerDetails = $('.player-details');
+  for (var i = 0; i < $playerDetails.length; i++) {
+    var player = new Object();
+    player.name = $playerDetails.eq(i).children('input').val();
+    player.color = $playerDetails.eq(i).find('#picked').attr('class');
+    player.score = 0;
+    players.push(player);
+  }
+}
 
+// Make move functions:
 function makeMove(event) {
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
@@ -214,6 +250,7 @@ function startTimer() {
 
 // Event handlers
 $gameWrapper.on('click', '.square', makeMove);
+
 $nextRoundBtn.on('click', function() {
   resetGameBoard();
   $boardOverlay.hide();
@@ -263,23 +300,11 @@ $numOfPlayersInput.blur(function() {
 });
 
 $('.start').click(function() {
-  boardRows = parseInt($('.board-rows').val());
-  boardCols = parseInt($('.board-cols').val());
-  connectNumber = parseInt($('.connect-number').val());
-  turnTime = parseInt($('.turn-time').val());
-  targetScore = parseInt($('.target-score').val());
-  var $playerDetails = $('.player-details');
-  for (var i = 0; i < $playerDetails.length; i++) {
-    var player = new Object();
-    player.name = $playerDetails.eq(i).children('input').val();
-    player.color = $playerDetails.eq(i).find('#picked').attr('class');
-    player.score = 0;
-    players.push(player);
-  }
+  setGameOptions();
+  createPlayerObjects();
   $gameScreen.css('left', '0');
-  createGameBoard();
+  resetGameBoard();
   createScoreBoard();
-  $rows = $('.row');
   $currentPlayer.text(players[activePlayer].name);
   startTimer();
   initialiseOptionsScreen();

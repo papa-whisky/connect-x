@@ -54,6 +54,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Make start button pass all input values to script, and begin game.
   * Add button to game screen to return to options screen.
   * Generate name/color inputs once player number input box has lost focus (in addition to on enter press).
+  * Add input placeholders to represent default values.
 6. Styling.
   * Style options page (heading, inputs, start button).
 7. Animations.
