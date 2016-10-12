@@ -145,6 +145,10 @@ aside {
   vertical-align: bottom;
 }
 
+.game-board {
+  font-size: 0;
+}
+
 .game-wrapper {
   display: inline-block;
 }
@@ -168,6 +172,7 @@ aside {
 
 .game-winner {
   display: none;
+  font-size: 1.4rem;
 }
 
 .game-winner::after {
@@ -178,13 +183,21 @@ aside {
   display: none;
 }
 
-.square {
+.square, .hover-square {
   display: inline-block;
   height: 4rem;
   width: 4rem;
   border: 2px solid black;
   background: #B8DBD9;
   border-radius: 100%;
+}
+
+.hover-square {
+  border: none;
+}
+
+.hover-row {
+  border-bottom: 2px solid black;
 }
 
 .current-player {
@@ -200,6 +213,10 @@ aside {
   display: inline-block;
   margin-left: 50%;
   font-size: 1.5em;
+}
+
+.round-winner {
+  font-size: 1.25rem;
 }
 
 .round-winner::before {

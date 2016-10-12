@@ -23,6 +23,7 @@ var $numOfPlayersInput = $('.num-of-players');
 var $playerInfo = $('.player-info');
 var $gameScreen = $('.game-screen');
 var $rows = $();
+var $hoverSquares = $();
 
 // Collect player info and game setting functions:
 function addPlayerDetailDivs() {
@@ -108,7 +109,6 @@ function createScoreBoard() {
   for (var i = 0; i < players.length; i++) {
     var $scoreCard = $('<div>').addClass('score-card');
     var $name = $('<div>').addClass('name').text(players[i].name);
-    // var $color = $('<div>').addClass(players[i].color).addClass('color');
     var $score = $('<div>').addClass(players[i].color).addClass('score').text(players[i].score);
     $scoreCard.append($name).append($score);
     $scoreBoard.append($scoreCard);
@@ -129,6 +129,7 @@ function createPlayerObjects() {
 
 // Make move functions:
 function makeMove(event) {
+  $hoverSquares.removeClass().addClass('hover-square');
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
     var color = players[activePlayer].color;
@@ -139,6 +140,7 @@ function makeMove(event) {
       startTimer();
     }
   }
+  $hoverSquares.eq(clickedColIndex).addClass(players[activePlayer].color);
 }
 
 function dropToken(color, clickedColIndex) {
@@ -231,9 +233,15 @@ function roundWon() {
 
 // Reset functions:
 function resetGameBoard() {
+  $('.game-board').children('.hover-row').remove();
   $gameWrapper.children().remove();
   createGameBoard();
   $rows = $('.row');
+  var $hoverRow = $rows.eq(0).clone();
+  $hoverRow.removeClass('row').addClass('hover-row');
+  $hoverRow.children().removeClass('square').addClass('hover-square');
+  $('.game-board').prepend($hoverRow);
+  $hoverSquares = $('.hover-square');
   activePlayer = Math.floor(Math.random() * players.length);
   nextPlayer();
 }
@@ -267,8 +275,20 @@ function startTimer() {
   }
 }
 
+function hoverToken() {
+  var hoverColIndex = $(event.target).siblings().addBack().index(event.target);
+  $hoverSquares.eq(hoverColIndex).addClass(players[activePlayer].color);
+}
+
+function unHoverToken() {
+  var hoverColIndex = $(event.target).siblings().addBack().index(event.target);
+  $hoverSquares.eq(hoverColIndex).removeClass(players[activePlayer].color);
+}
+
 // Event handlers
 $gameWrapper.on('click', '.square', makeMove);
+$gameWrapper.on('mouseenter', '.square', hoverToken);
+$gameWrapper.on('mouseleave', '.square', unHoverToken);
 
 $nextRoundBtn.on('click', function() {
   resetGameBoard();
@@ -338,4 +358,4 @@ $('.start').click(function() {
 
 $('.return-to-options').click(function() {
   $gameScreen.css('left', '100%');
-})
+});
