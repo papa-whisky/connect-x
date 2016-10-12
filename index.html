@@ -16,13 +16,24 @@
 			<h1>Connect-X</h1>
 
 			<div class="player-info">
-				<h3>Number of players (2 to 5)</h3><input class="num-of-players" type="number">
+				<h3>Number of players (2 to 5)</h3>
+				<input class="num-of-players" type="number" min="2" max="5">
 			</div>
 
-			<h3>Board size (rows x columns)</h3><input class="board-rows" type="number" placeholder="6">x<input class="board-cols" type="number" placeholder="7"><br>
-			<h3>Tokens to connect</h3><input class="connect-number" type="number" placeholder="4"><br>
-			<h3>Turn time limit (seconds, 0 for ∞)</h3><input class="turn-time" type="number" placeholder="0"><br>
-			<h3>Number of rounds to win</h3><input class="target-score" type="number" placeholder="3"><br>
+			<h3>Board size (rows x columns)</h3>
+			<input class="board-rows" type="number" placeholder="6" min="2" max="8">
+			x
+			<input class="board-cols" type="number" placeholder="7" min="2" max="12"><br>
+
+			<h3>Tokens to connect</h3>
+			<input class="connect-number" type="number" placeholder="4" min="2" max="7"><br>
+
+			<h3>Turn time limit (seconds, 0 for ∞)</h3>
+			<input class="turn-time" type="number" placeholder="0" min="0"><br>
+
+			<h3>Number of rounds to win</h3>
+			<input class="target-score" type="number" placeholder="3" min="1"><br>
+
 			<button class="start">Start</button>
 
 		</section>

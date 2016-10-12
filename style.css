@@ -122,6 +122,8 @@ header {
 main {
   display: inline-block;
   position: relative;
+  border: 2px solid black;
+  font-size: 0;
 }
 
 aside {
@@ -142,7 +144,6 @@ aside {
 
 .game-wrapper {
   display: inline-block;
-  font-size: 0;
 }
 
 .row {
@@ -178,7 +179,7 @@ aside {
   display: inline-block;
   height: 4rem;
   width: 4rem;
-  border: 1px solid black;
+  border: 2px solid black;
   background: #B8DBD9;
   border-radius: 100%;
 }
