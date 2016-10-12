@@ -249,17 +249,17 @@ function addColorPickerHandlers() {
 }
 
 $numOfPlayersInput.keypress(function() {
-  if (event.which === 13 && $('.player-details').length === 0) {
+  if (event.which === 13) {
+    $('.player-details').remove();
     addPlayerDetailDivs();
     addColorPickerHandlers();
   }
 });
 
 $numOfPlayersInput.blur(function() {
-  if ($('.player-details').length === 0) {
-    addPlayerDetailDivs();
-    addColorPickerHandlers();
-  }
+  $('.player-details').remove();
+  addPlayerDetailDivs();
+  addColorPickerHandlers();
 });
 
 $('.start').click(function() {
