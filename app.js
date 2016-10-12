@@ -208,13 +208,13 @@ function startTimer() {
 }
 
 // Event handlers
-
 $gameWrapper.on('click', '.square', makeMove);
 $nextRoundBtn.on('click', function() {
   resetGameBoard();
   $boardOverlay.hide();
   startTimer();
-})
+});
+
 $resetBtn.on('click', function() {
   for (var i = 0; i < players.length; i++) {
     players[i].score = 0;
@@ -227,9 +227,21 @@ $resetBtn.on('click', function() {
   $('.score').text('0');
   resetGameBoard();
   startTimer();
-})
+});
+
 $numOfPlayersInput.keypress(function() {
   if (event.which === 13) {
     addPlayerDetailDivs();
   }
-})
+  $('.color-picker div').hover(function() {
+    $(event.target).siblings().addClass('dim');
+  }, function() {
+    $(event.target).siblings().removeClass('dim');
+  });
+  $('.color-picker div').click(function() {
+    $(event.target).siblings().hide()
+    var chosenColor = $(event.target).attr('class');
+    $('.' + chosenColor).not(event.target).hide();
+    $(event.target).addClass('picked');
+  })
+});
