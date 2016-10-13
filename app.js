@@ -8,6 +8,7 @@ var players = [];
 var activePlayer = 0;
 var timeLeft = 0;
 var timerInterval = null;
+var animationActive = false;
 
 // jQuery objects
 var $gameWrapper = $('.game-wrapper');
@@ -131,13 +132,14 @@ function createPlayerObjects() {
 // Make move functions:
 function makeMove(event) {
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
-  if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
+  if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled') && !animationActive) {
     var color = players[activePlayer].color;
     dropToken(color, clickedColIndex);
   }
 }
 
 function dropToken(color, clickedColIndex) {
+  animationActive = true;
   var i = 0
   function delayLoop() {
     setTimeout(function () {
@@ -178,6 +180,7 @@ function dropToken(color, clickedColIndex) {
 }
 
 function completeTurn($currentSquare, color, clickedColIndex) {
+  animationActive = false;
   if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
     clearInterval(timerInterval);
     nextPlayer();
