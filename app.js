@@ -152,19 +152,11 @@ function dropToken(color, clickedColIndex) {
             $prevSquare.removeClass(color);
           }
         } else {
-          $currentSquare.addClass('filled ' + color);
-          if ($prevSquare) {
-            $prevSquare.removeClass(color);
-          }
-          completeTurn($currentSquare, color, clickedColIndex);
+          fillSquare($currentSquare, color, clickedColIndex, $prevSquare);
           return;
         }
       } else {
-        $currentSquare.addClass('filled ' + color);
-        if ($prevSquare) {
-          $prevSquare.removeClass(color);
-        }
-        completeTurn($currentSquare, color, clickedColIndex);
+        fillSquare($currentSquare, color, clickedColIndex, $prevSquare);
         return;
       }
       i++;
@@ -176,13 +168,21 @@ function dropToken(color, clickedColIndex) {
   delayLoop();
 }
 
+function fillSquare($currentSquare, color, clickedColIndex, $prevSquare) {
+  $currentSquare.addClass('filled ' + color);
+  if ($prevSquare) {
+    $prevSquare.removeClass(color);
+  }
+  completeTurn($currentSquare, color, clickedColIndex);
+}
+
 function completeTurn($currentSquare, color, clickedColIndex) {
   animationActive = false;
   if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
     clearInterval(timerInterval);
+    $hoverSquares.removeClass().addClass('hover-square');
     nextPlayer();
     startTimer();
-    $hoverSquares.removeClass().addClass('hover-square');
   }
 }
 

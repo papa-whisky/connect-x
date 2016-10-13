@@ -83,5 +83,5 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * TODO: Player clicking when timer reaches 0 will get another turn due to animation delay.
 7. Optimisations.
   * TODO: Use event bubbling to refine color picker event handler.
-  * TODO: Create fillSquare function to clean up dropToken function.
+  * Create fillSquare function to clean up dropToken function.
   * TODO: Avoid checking for winner when it's not possible that game has been won (e.g., not enough tokens dropped, checking for diagonals close to corners).
