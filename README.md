@@ -71,6 +71,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Have player's token hover over column they are about to click.
   * Make turn timer red when 5 or less seconds remain.
   * Simple border on tokens.
+  * De-emphasise input guidance on options screen.
 5. Animations.
   * Implement options screen heading as a splash screen.
   * Animate transition between options screen and game screen.
