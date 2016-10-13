@@ -79,10 +79,6 @@ input {
   opacity: .25;
 }
 
-.color-picker {
-  width: 8em;
-}
-
 .player-details input {
   width: 8em;
   margin-bottom: .1em;

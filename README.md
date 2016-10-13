@@ -64,7 +64,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Add input placeholders to represent default values.
   * Add input validation for start button (re player names/colors).
   * Set max and min values for input boxes.
-  * TODO: Add default number of players & pre-created name inputs and color pickers.
+  * Add default number of players & pre-created name inputs and color pickers.
 4. Styling.
   * Style options page (heading, inputs, start button).
   * Style game page (game board, score board, turn and timer info).

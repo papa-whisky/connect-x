@@ -298,8 +298,6 @@ function initialiseOptionsScreen() {
   $('.connect-number').val('');
   $('.turn-time').val('');
   $('.target-score').val('');
-  $numOfPlayersInput.val('');
-  $('.player-details').remove();
 }
 
 // Turn timer functions:
@@ -374,6 +372,8 @@ function addColorPickerHandlers() {
     $('.' + chosenColor).not(event.target).hide();
   });
 }
+
+addColorPickerHandlers();
 
 $numOfPlayersInput.keypress(function() {
   if (event.which === 13) {
