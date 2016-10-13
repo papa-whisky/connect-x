@@ -77,9 +77,6 @@ function setGameOptions() {
 }
 
 function validatePlayerDetails() {
-  if ($numOfPlayersInput.val() === '') {
-    return false;
-  }
   var $nameInputs = $('.player-details input');
   for (var i = 0; i < $nameInputs.length; i++) {
     if ($nameInputs.eq(i).val() === '') {
