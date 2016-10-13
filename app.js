@@ -158,6 +158,7 @@ function makeMove(event) {
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled') && !animationActive) {
     var color = players[activePlayer].color;
+    clearInterval(timerInterval);
     $hoverSquares.removeClass().addClass('hover-square');
     dropToken(color, clickedColIndex);
   }
@@ -207,7 +208,6 @@ function fillSquare($currentSquare, color, clickedColIndex, $prevSquare) {
 function completeTurn($currentSquare, color, clickedColIndex) {
   animationActive = false;
   if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
-    clearInterval(timerInterval);
     $hoverSquares.removeClass().addClass('hover-square');
     nextPlayer();
     startTimer();
@@ -282,7 +282,6 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
 }
 
 function roundWon() {
-  clearInterval(timerInterval);
   $roundWinner.text(players[activePlayer].name);
   players[activePlayer].score += 1;
   $('.score').eq(activePlayer).text(players[activePlayer].score);
@@ -297,7 +296,6 @@ function roundWon() {
 }
 
 function roundDrawn() {
-  clearInterval(timerInterval);
   $roundWinner.text('Nobody!');
   $boardOverlay.show();
 }
