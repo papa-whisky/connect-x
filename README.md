@@ -84,6 +84,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * ~~Player can add multiple tokens by clicking again before animation completes.~~
   * ~~Player clicking when timer reaches 0 will get another turn due to animation delay.~~
   * ~~Hovering token doesn't clear when turn time expires.~~
+  * TODO: When selecting 5 players, last player's colour still requires a click to select, should auto-select as it's the only option.
 7. Optimisations.
   * TODO: Use event bubbling to refine color picker event handler.
   * Create fillSquare function to clean up dropToken function.
