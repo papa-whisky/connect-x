@@ -249,6 +249,10 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
       return true;
     }
   }
+  if ($('.square').not('.filled').length === 0) {
+    roundDrawn();
+    return true;
+  }
   return false;
 }
 
@@ -265,6 +269,12 @@ function roundWon() {
     $nextRoundBtn.hide();
     $resetBtn.show();
   }
+}
+
+function roundDrawn() {
+  clearInterval(timerInterval);
+  $roundWinner.text('Nobody!');
+  $boardOverlay.show();
 }
 
 // Reset functions:

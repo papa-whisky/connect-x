@@ -75,7 +75,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Animate transition between options screen and game screen.
   * Animate tokens dropping into columns.
 6. Bugs.
-  * TODO: Check whether board is full with no winner (aka drawn game).
+  * ~~Check whether board is full with no winner (aka drawn game).~~
   * TODO: Input min/max not working.
   * TODO: Clear board overlay when going back to options screen and starting a new game.
   * TODO: Player details input validation is vague, try adding red asterisk after element(s) requiring completion.
