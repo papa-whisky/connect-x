@@ -116,6 +116,7 @@ button:hover {
 }
 
 header {
+  position: relative;
   background: #8BEAD8;
   height: 6em;
   line-height: 6em;
@@ -218,8 +219,9 @@ aside {
 
 .turn-timer {
   display: inline-block;
-  margin-left: 50%;
   font-size: 1.5em;
+  position: absolute;
+  right: 10%;
 }
 
 .round-winner {

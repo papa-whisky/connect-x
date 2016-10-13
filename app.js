@@ -306,6 +306,9 @@ function initialiseOptionsScreen() {
 function timer() {
   timeLeft -= 1;
   $turnTimer.text(timeLeft);
+  if (timeLeft < 6) {
+    $turnTimer.css({'color': 'red'});
+  }
   if (timeLeft === -1) {
     clearInterval(timerInterval);
     nextPlayer();
@@ -315,6 +318,7 @@ function timer() {
 
 function startTimer() {
   if (turnTime > 0) {
+    $turnTimer.css({'color': 'black'});
     timeLeft = turnTime;
     $turnTimer.text(timeLeft);
     timerInterval = setInterval(timer, 1000);
