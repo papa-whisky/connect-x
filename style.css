@@ -38,13 +38,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .options-screen {
-  background: #2F4550;
+  background: grey;
   text-align: center;
   color: rgba(255, 255, 255, .75);
 }
 
 h1 {
-  background: #8BEAD8;
+  background: gold;
   color: black;
   font-weight: normal;
   margin: 0 0 .75em 0;
@@ -110,14 +110,14 @@ button:hover {
 
 .game-screen {
   left: 100%;
-  background: #B8DBD9;
+  background: grey;
   text-align: center;
   transition: left .5s ease-in;
 }
 
 header {
   position: relative;
-  background: #8BEAD8;
+  background: gold;
   height: 6em;
   line-height: 6em;
   margin-bottom: 2.5em;
@@ -128,7 +128,7 @@ header {
 .centering {
   display: inline-block;
   width: 74%;
-  border-right: 1px solid grey;
+  border-right: 1px solid gold;
 }
 
 main {
@@ -196,7 +196,7 @@ aside {
   height: 4rem;
   width: 4rem;
   border: 2px solid black;
-  background: #B8DBD9;
+  background: grey;
   border-radius: 100%;
 }
 
@@ -277,6 +277,6 @@ button {
   background: aquamarine;
 }
 
-.darkgoldenrod {
-  background: darkgoldenrod;
+.goldenrod {
+  background: goldenrod;
 }

@@ -43,7 +43,7 @@ function generateColorPicker() {
   var $two = $('<div>').addClass('chartruese');
   var $three = $('<div>').addClass('salmon');
   var $four = $('<div>').addClass('aquamarine');
-  var $five = $('<div>').addClass('darkgoldenrod');
+  var $five = $('<div>').addClass('goldenrod');
   $colorPicker.append($one, $two, $three, $four, $five);
   return $colorPicker;
 }
