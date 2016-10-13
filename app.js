@@ -24,6 +24,7 @@ var $playerInfo = $('.player-info');
 var $gameScreen = $('.game-screen');
 var $rows = $();
 var $hoverSquares = $();
+var $currentSquare = $();
 
 // Collect player info and game setting functions:
 function addPlayerDetailDivs() {
@@ -129,27 +130,59 @@ function createPlayerObjects() {
 
 // Make move functions:
 function makeMove(event) {
-  $hoverSquares.removeClass().addClass('hover-square');
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled')) {
     var color = players[activePlayer].color;
-    var $currentSquare = dropToken(color, clickedColIndex);
-    if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
-      clearInterval(timerInterval);
-      nextPlayer();
-      startTimer();
-    }
+    dropToken(color, clickedColIndex);
   }
-  $hoverSquares.eq(clickedColIndex).addClass(players[activePlayer].color);
 }
 
 function dropToken(color, clickedColIndex) {
-  for (var i = ($rows.length - 1); i >= 0; i--) {
-    var $currentSquare = $rows.eq(i).children().eq(clickedColIndex);
-    if (!$currentSquare.hasClass('filled')) {
-      $currentSquare.addClass('filled ' + color);
-      return $currentSquare;
-    }
+  var i = 0
+  function delayLoop() {
+    setTimeout(function () {
+      $currentSquare = $rows.eq(i).children().eq(clickedColIndex);
+      if (i - 1 >= 0) {
+        var $prevSquare = $rows.eq(i - 1).children().eq(clickedColIndex);
+      }
+      if (i + 1 < $rows.length) {
+        var $nextSquare = $rows.eq(i + 1).children().eq(clickedColIndex);
+        if (!$nextSquare.hasClass('filled') ) {
+          $currentSquare.addClass(color);
+          if ($prevSquare) {
+            $prevSquare.removeClass(color);
+          }
+        } else {
+          $currentSquare.addClass('filled ' + color);
+          if ($prevSquare) {
+            $prevSquare.removeClass(color);
+          }
+          completeTurn($currentSquare, color, clickedColIndex);
+          return;
+        }
+      } else {
+        $currentSquare.addClass('filled ' + color);
+        if ($prevSquare) {
+          $prevSquare.removeClass(color);
+        }
+        completeTurn($currentSquare, color, clickedColIndex);
+        return;
+      }
+      i++;
+      if (i < $rows.length) {
+        delayLoop();
+      }
+    }, 250);
+  }
+  delayLoop();
+}
+
+function completeTurn($currentSquare, color, clickedColIndex) {
+  if (!checkRoundWinner($currentSquare, color, clickedColIndex)) {
+    clearInterval(timerInterval);
+    nextPlayer();
+    startTimer();
+    $hoverSquares.removeClass().addClass('hover-square');
   }
 }
 
