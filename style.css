@@ -73,6 +73,7 @@ input {
   width: 1em;
   height: 1em;
   border-radius: 100%;
+  border: none;
 }
 
 .dim {
@@ -103,7 +104,7 @@ button:hover {
 }
 
 .invalid {
-  border: 1px solid red;
+  border: 1px solid orangered;
 }
 
 /*GAME SCREEN STYLES*/
@@ -246,6 +247,10 @@ aside {
   margin-bottom: 1em;
 }
 
+.score-card div {
+  border: none;
+}
+
 button {
   background: none;
   border: 1px solid black;
@@ -263,20 +268,25 @@ button {
 
 .mistyrose {
   background: mistyrose;
+  border: 5px solid rosybrown;
 }
 
 .chartruese {
   background: chartreuse;
+  border: 5px solid yellowgreen
 }
 
 .salmon {
   background: salmon;
+  border: 5px solid coral;
 }
 
 .aquamarine {
   background: aquamarine;
+  border: 5px solid mediumaquamarine;
 }
 
 .goldenrod {
   background: goldenrod;
+  border: 5px solid darkgoldenrod;
 }

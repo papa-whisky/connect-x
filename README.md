@@ -70,11 +70,11 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Style game page (game board, score board, turn and timer info).
   * Have player's token hover over column they are about to click.
   * Make turn timer red when 5 or less seconds remain.
+  * Simple border on tokens.
 5. Animations.
   * Implement options screen heading as a splash screen.
   * Animate transition between options screen and game screen.
   * Animate tokens dropping into columns.
-  * TODO: Simple border on tokens.
 6. Bugs.
   * ~~Check whether board is full with no winner (aka drawn game).~~
   * ~~Input min/max not working.~~
