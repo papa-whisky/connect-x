@@ -78,7 +78,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * ~~Check whether board is full with no winner (aka drawn game).~~
   * TODO: Input min/max not working.
   * ~~Clear board overlay when going back to options screen and starting a new game.~~
-  * TODO: Player details input validation is vague, try adding red asterisk after element(s) requiring completion.
+  * ~~Player details input validation is vague, try adding red asterisk after element(s) requiring completion.~~
   * ~~Player can add multiple tokens by clicking again before animation completes.~~
   * TODO: Player clicking when timer reaches 0 will get another turn due to animation delay.
 7. Optimisations.

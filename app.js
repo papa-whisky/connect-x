@@ -80,12 +80,14 @@ function validatePlayerDetails() {
   var $nameInputs = $('.player-details input');
   for (var i = 0; i < $nameInputs.length; i++) {
     if ($nameInputs.eq(i).val() === '') {
+      $nameInputs.eq(i).addClass('invalid');
       return false;
     }
   }
   var $colorInputs = $('.color-picker');
   for (var i = 0; i < $colorInputs.length; i++) {
     if ($colorInputs.eq(i).children().filter('#picked').length === 0) {
+      $colorInputs.eq(i).addClass('invalid');
       return false;
     }
   }
@@ -390,18 +392,16 @@ $numOfPlayersInput.blur(function() {
 
 $('.start').click(function() {
   if (validatePlayerDetails()) {
-  $('.player-info').removeClass('invalid');
-  setGameOptions();
-  createPlayerObjects();
-  $boardOverlay.hide();
-  $gameScreen.css('left', '0');
-  resetGameBoard();
-  createScoreBoard();
-  $currentPlayer.text(players[activePlayer].name);
-  startTimer();
-  initialiseOptionsScreen();
-  } else {
-    $('.player-info').addClass('invalid');
+    $('.invalid').removeClass('invalid');
+    setGameOptions();
+    createPlayerObjects();
+    $boardOverlay.hide();
+    $gameScreen.css('left', '0');
+    resetGameBoard();
+    createScoreBoard();
+    $currentPlayer.text(players[activePlayer].name);
+    startTimer();
+    initialiseOptionsScreen();
   }
 });
 
