@@ -91,6 +91,31 @@ function validatePlayerDetails() {
       return false;
     }
   }
+  var rowVal = parseInt($('.board-rows').val());
+  if (rowVal < 2 || rowVal > 8) {
+    $('.board-rows').addClass('invalid');
+    return false;
+  }
+  var colVal = parseInt($('.board-cols').val());
+  if (colVal < 2 || colVal > 14) {
+    $('.board-cols').addClass('invalid');
+    return false;
+  }
+  var tokensVal = parseInt($('.connect-number').val());
+  if (tokensVal < 2 || tokensVal > 7) {
+    $('.connect-number').addClass('invalid');
+    return false;
+  }
+  var timeVal = parseInt($('.turn-time').val());
+  if (timeVal < 0) {
+    $('.turn-time').addClass('invalid');
+    return false;
+  }
+  var targetVal = parseInt($('.target-score').val());
+  if (targetVal < 1) {
+    $('.target-score').addClass('invalid');
+    return false;
+  }
   return true;
 }
 
