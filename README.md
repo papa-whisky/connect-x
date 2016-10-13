@@ -75,8 +75,9 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Animate transition between options screen and game screen.
   * TODO: Animate tokens dropping into columns.
 6. Bugs.
-  * TODO: input min/max not working.
-  * TODO: clear board overaly when going back to options screen and starting a new game.
-  * TODO: player details input validation is vague, try adding red asterisk after element(s) requiring completion.
+  * TODO: Check whether board is full with no winner (aka drawn game).
+  * TODO: Input min/max not working.
+  * TODO: Clear board overlay when going back to options screen and starting a new game.
+  * TODO: Player details input validation is vague, try adding red asterisk after element(s) requiring completion.
 7. Optimisations.
   * TODO: Use event bubbling to refine color picker event handler.

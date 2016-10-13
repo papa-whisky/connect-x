@@ -275,6 +275,7 @@ function startTimer() {
   }
 }
 
+// Hover token functions:
 function hoverToken() {
   var hoverColIndex = $(event.target).siblings().addBack().index(event.target);
   $hoverSquares.eq(hoverColIndex).addClass(players[activePlayer].color);
@@ -285,7 +286,7 @@ function unHoverToken() {
   $hoverSquares.eq(hoverColIndex).removeClass(players[activePlayer].color);
 }
 
-// Event handlers
+// Event handlers:
 $gameWrapper.on('click', '.square', makeMove);
 $gameWrapper.on('mouseenter', '.square', hoverToken);
 $gameWrapper.on('mouseleave', '.square', unHoverToken);
