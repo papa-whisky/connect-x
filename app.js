@@ -396,6 +396,7 @@ $('.start').click(function() {
   $('.player-info').removeClass('invalid');
   setGameOptions();
   createPlayerObjects();
+  $boardOverlay.hide();
   $gameScreen.css('left', '0');
   resetGameBoard();
   createScoreBoard();
