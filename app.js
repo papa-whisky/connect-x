@@ -76,7 +76,7 @@ function setGameOptions() {
   }
 }
 
-function validatePlayerDetails() {
+function validateInputs() {
   var $nameInputs = $('.player-details input');
   for (var i = 0; i < $nameInputs.length; i++) {
     if ($nameInputs.eq(i).val() === '') {
@@ -142,7 +142,7 @@ function createScoreBoard() {
 }
 
 function createPlayerObjects() {
-  players = [];  
+  players = [];
   var $playerDetails = $('.player-details');
   for (var i = 0; i < $playerDetails.length; i++) {
     var player = new Object();
@@ -158,6 +158,7 @@ function makeMove(event) {
   var clickedColIndex = $(event.target).siblings().addBack().index(event.target);
   if (!$rows.eq(0).children().eq(clickedColIndex).hasClass('filled') && !animationActive) {
     var color = players[activePlayer].color;
+    $hoverSquares.removeClass().addClass('hover-square');
     dropToken(color, clickedColIndex);
   }
 }
@@ -173,7 +174,7 @@ function dropToken(color, clickedColIndex) {
       }
       if (i + 1 < $rows.length) {
         var $nextSquare = $rows.eq(i + 1).children().eq(clickedColIndex);
-        if (!$nextSquare.hasClass('filled') ) {
+        if (!$nextSquare.hasClass('filled')) {
           $currentSquare.addClass(color);
           if ($prevSquare) {
             $prevSquare.removeClass(color);
@@ -329,10 +330,11 @@ function timer() {
   timeLeft -= 1;
   $turnTimer.text(timeLeft);
   if (timeLeft < 6) {
-    $turnTimer.css({'color': 'red'});
+    $turnTimer.css({ 'color': 'red' });
   }
   if (timeLeft === -1) {
     clearInterval(timerInterval);
+    $hoverSquares.removeClass().addClass('hover-square');
     nextPlayer();
     startTimer();
   }
@@ -340,7 +342,7 @@ function timer() {
 
 function startTimer() {
   if (turnTime > 0) {
-    $turnTimer.css({'color': 'black'});
+    $turnTimer.css({ 'color': 'black' });
     timeLeft = turnTime;
     $turnTimer.text(timeLeft);
     timerInterval = setInterval(timer, 1000);
@@ -363,13 +365,13 @@ $gameWrapper.on('click', '.square', makeMove);
 $gameWrapper.on('mouseenter', '.square', hoverToken);
 $gameWrapper.on('mouseleave', '.square', unHoverToken);
 
-$nextRoundBtn.on('click', function() {
+$nextRoundBtn.on('click', function () {
   resetGameBoard();
   $boardOverlay.hide();
   startTimer();
 });
 
-$resetBtn.on('click', function() {
+$resetBtn.on('click', function () {
   for (var i = 0; i < players.length; i++) {
     players[i].score = 0;
   }
@@ -384,12 +386,12 @@ $resetBtn.on('click', function() {
 });
 
 function addColorPickerHandlers() {
-  $('.color-picker div').hover(function() {
-  $(event.target).siblings().addClass('dim');
-  }, function() {
+  $('.color-picker div').hover(function () {
+    $(event.target).siblings().addClass('dim');
+  }, function () {
     $(event.target).siblings().removeClass('dim');
   });
-  $('.color-picker div').click(function() {
+  $('.color-picker div').click(function () {
     $(event.target).siblings().hide()
     var chosenColor = $(event.target).attr('class');
     $(event.target).attr('id', 'picked');
@@ -399,7 +401,7 @@ function addColorPickerHandlers() {
 
 addColorPickerHandlers();
 
-$numOfPlayersInput.keypress(function() {
+$numOfPlayersInput.keypress(function () {
   if (event.which === 13) {
     $('.player-details').remove();
     addPlayerDetailDivs();
@@ -407,7 +409,7 @@ $numOfPlayersInput.keypress(function() {
   }
 });
 
-$numOfPlayersInput.blur(function() {
+$numOfPlayersInput.blur(function () {
   if ($('.player-details').length === 0) {
     $('.player-details').remove();
     addPlayerDetailDivs();
@@ -415,8 +417,8 @@ $numOfPlayersInput.blur(function() {
   }
 });
 
-$('.start').click(function() {
-  if (validatePlayerDetails()) {
+$('.start').click(function () {
+  if (validateInputs()) {
     $('.invalid').removeClass('invalid');
     setGameOptions();
     createPlayerObjects();
@@ -430,16 +432,16 @@ $('.start').click(function() {
   }
 });
 
-$('.return-to-options').click(function() {
+$('.return-to-options').click(function () {
   $gameScreen.css('left', '100%');
 });
 
-$('h1').click(function() {
-  $(event.target).css({'line-height': '1em', 'padding': '1em 0'});
+$('h1').click(function () {
+  $(event.target).css({ 'line-height': '1em', 'padding': '1em 0' });
   $('p').hide()
 });
 
-$('p').click(function() {
-  $('h1').css({'line-height': '1em', 'padding': '1em 0'});
+$('p').click(function () {
+  $('h1').css({ 'line-height': '1em', 'padding': '1em 0' });
   $('p').hide()
 });

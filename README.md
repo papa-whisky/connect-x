@@ -74,6 +74,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Implement options screen heading as a splash screen.
   * Animate transition between options screen and game screen.
   * Animate tokens dropping into columns.
+  * TODO: Simple border on tokens.
 6. Bugs.
   * ~~Check whether board is full with no winner (aka drawn game).~~
   * ~~Input min/max not working.~~
@@ -81,6 +82,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * ~~Player details input validation is vague, try adding red asterisk after element(s) requiring completion.~~
   * ~~Player can add multiple tokens by clicking again before animation completes.~~
   * TODO: Player clicking when timer reaches 0 will get another turn due to animation delay.
+  * ~~Hovering token doesn't clear when turn time expires.~~
 7. Optimisations.
   * TODO: Use event bubbling to refine color picker event handler.
   * Create fillSquare function to clean up dropToken function.
