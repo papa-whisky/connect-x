@@ -72,6 +72,7 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * Make turn timer red when 5 or less seconds remain.
   * Simple border on tokens.
   * De-emphasise input guidance on options screen.
+  * TODO: Make layout responsive.
 5. Animations.
   * Implement options screen heading as a splash screen.
   * Animate transition between options screen and game screen.
@@ -89,3 +90,5 @@ Connect-4 clone, played in browser by 2+ players. Various game options (hopefull
   * TODO: Use event bubbling to refine color picker event handler.
   * Create fillSquare function to clean up dropToken function.
   * TODO: Avoid checking for winner when it's not possible that game has been won (e.g., not enough tokens dropped, checking for diagonals close to corners).
+  * TODO: Break down checkRoundWinner into smaller functions.
+  * TODO: Add donate button.

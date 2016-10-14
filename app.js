@@ -247,7 +247,7 @@ function checkRoundWinner($currentSquare, color, clickedColIndex) {
     }
   }
   // Check for winner diagonally.
-  var currentRowIndex = $currentSquare.parent().parent().children().index($currentSquare.parent());
+  var currentRowIndex = $rows.index($currentSquare.parent());
   var $diag1 = $();
   for (var i = 0; i < $rows.length; i++) {
     if (currentRowIndex + clickedColIndex - i < boardCols && currentRowIndex + clickedColIndex - i >= 0) {
