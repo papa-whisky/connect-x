@@ -77,6 +77,7 @@ function setGameOptions() {
 }
 
 function validateInputs() {
+  $('.invalid').removeClass('invalid');
   var $nameInputs = $('.player-details input');
   for (var i = 0; i < $nameInputs.length; i++) {
     if ($nameInputs.eq(i).val() === '') {
@@ -417,7 +418,6 @@ $numOfPlayersInput.blur(function () {
 
 $('.start').click(function () {
   if (validateInputs()) {
-    $('.invalid').removeClass('invalid');
     setGameOptions();
     createPlayerObjects();
     $boardOverlay.hide();
